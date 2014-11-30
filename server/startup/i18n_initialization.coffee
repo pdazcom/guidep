@@ -6,7 +6,7 @@ Meteor.startup ->
     else
       #detect the language used by the browser
       language = window.navigator.userLanguage || window.navigator.language
-      language = getLanguage language
+      language = i18n.getLanguage language
 
     i18n.setLanguage language
 
