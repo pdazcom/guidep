@@ -1,10 +1,17 @@
-_tmp = {}
-langs = i18n.getAvailableLanguages()
-_.each langs, (v)->
-  _tmp[v] =
+depTitleObj = {}
+_.each i18n.getAvailableLanguages(), (v)->
+  depTitleObj[v] =
     type: String
 
-depTitleSchema = new SimpleSchema _tmp
+depTitleSchema = new SimpleSchema depTitleObj
+depStatusSchema = new SimpleSchema
+  hidden:
+    type: Boolean
+    optional: true
+  new:
+    type: Boolean
+    optional: true
+
 depSchema = SimpleSchema.build SimpleSchema.timestamp,
   title:
     type: depTitleSchema
@@ -18,7 +25,7 @@ depSchema = SimpleSchema.build SimpleSchema.timestamp,
     type: String
     optional: true
   status:
-    type: Object
+    type: depStatusSchema
     optional: true
 
 Departments = new Mongo.Collection 'departments'
