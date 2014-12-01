@@ -9,5 +9,3 @@ Meteor.startup ->
       language = i18n.getLanguage language
 
     i18n.setLanguage language
-
-    console.log i18n('homepage.title')

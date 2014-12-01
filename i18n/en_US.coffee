@@ -10,3 +10,4 @@ i18n.map 'en_US', homepage:
 i18n.map 'en_US', deps:
   name: 'Departments'
   title: 'Departments manager'
+  createDep: 'Creating department'

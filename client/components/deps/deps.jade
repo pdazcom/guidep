@@ -1,4 +1,25 @@
 template(name='deps')
     h1 {{ i18n 'deps.title' }}
     .row
-        .col-md-6.col-xs-12 Page content here
+        .col-md-10
+        .col-md-2
+            a#add_dep_btn.btn.btn-success(href = pathFor 'createDep')
+                i.fa.fa-plus-square
+                | Add department
+    .row
+        .col-md-12
+            table.table.table-striped
+                thead
+                    tr
+                        th(width='50')
+                            input(type='checkbox')
+                        th ID
+                        th Title
+                        th Main department
+                tbody
+                    if deps.length
+                        each deps
+                            +depRow
+                    else
+                        tr
+                            td.text-center(colspan='4') Not found
