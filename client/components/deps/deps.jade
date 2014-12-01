@@ -3,7 +3,7 @@ template(name='deps')
     .row
         .col-md-10
         .col-md-2
-            a#add_dep_btn.btn.btn-success(href = pathFor 'createDep')
+            a#add_dep_btn.btn.btn-success(href="{{ pathFor 'createDep' }}")
                 i.fa.fa-plus-square
                 | Add department
     .row

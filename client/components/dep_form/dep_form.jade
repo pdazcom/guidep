@@ -1,0 +1,11 @@
+template(name='depForm')
+    h1 i18n 'deps.createDep'
+    .row
+        .col-md-12
+            form.form-horizontal(role='form')
+                .form-group.col-md-6
+                    label(for='title') Title
+                    input.form-control#title(type='text' name='title' placeholder='Title')
+                .form-group.col-md-6
+                    label(for='main_dep') Main department
+                    +inputAutocomplete settings=settings id="main_dep" class="form-control" placeholder="Main department"
