@@ -31,4 +31,11 @@ depSchema = SimpleSchema.build SimpleSchema.timestamp,
 Departments = new Mongo.Collection 'departments'
 Departments.attachSchema depSchema
 
+Departments.allow
+  insert: (userId, doc)->
+    if !userId
+      false
+
+    UsersCollection.findOne({ _id: userId}, {fields: { role: 1 }}).hasAccess 'admin'
+
 @DepartmentsCollection = Departments

@@ -17,9 +17,9 @@ template(name='deps')
                         th {{ i18n 'general.title' }}
                         th {{ i18n 'deps.mainDep' }}
                 tbody
-                    if deps.length
-                        each deps
-                            +depRow
-                    else
+                    //if deps.length
+                    each deps
+                        +depRow
+                    //else
                         tr
-                            td.text-center(colspan='4') {{ i18n 'not_found' }}
+                            td.text-center(colspan='4') {{ i18n 'general.not_found' }}
