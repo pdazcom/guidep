@@ -4,7 +4,7 @@ Template.depForm.helpers
     limit: 5
     rules: [
       token: '!'
-      collection: Dataset
+      collection: DepartmentsCollection
       field: "_id"
       options: ''
       matchAll: true
@@ -12,3 +12,24 @@ Template.depForm.helpers
         type: "autocomplete"
       template: Template.dataPiece
     ]
+
+  mainDepPlaceholder: ->
+    i18n 'deps.mainDep'
+
+  langs: ->
+    i18n.getAvailableLanguages()
+
+Template.depForm.events
+  'submit #dep_form': (event) ->
+    event.preventDefault()
+    form = $("#dep_form").serializeJSON()
+    form.status?.hidden = true
+    if form.status
+      if form.status.hidden
+        form.status.hidden = true
+      if form.status.new
+        form.status.new = true
+
+    DepartmentsCollection.insert form
+
+    console.log form

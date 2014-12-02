@@ -1,8 +1,6 @@
 Router.route '/deps/create', name: 'createDep'
-class @DepCreateController extends RouteController
-
+class @CreateDepController extends RouteController
   template: 'depForm'
-
   action: ->
     document.title = i18n 'deps.createDep'
     super()

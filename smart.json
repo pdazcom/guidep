@@ -3,6 +3,7 @@
     "bower": {}
   },
   "bower": {
-    "pathfinding": "~0.4.x"
+    "pathfinding": "~0.4.x",
+    "jquery.serializeJSON": "~2.4.x"
   }
 }

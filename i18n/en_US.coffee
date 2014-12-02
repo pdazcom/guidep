@@ -1,6 +1,11 @@
 i18n.map 'en_US', general:
   logo: 'Guidep'
   toggle_nav: 'Toggle navigation'
+  title: 'Title'
+  not_found: 'Not found'
+  create: 'Create'
+  delete: 'Delete'
+  edit: 'Edit'
 
 i18n.map 'en_US', homepage:
   name: 'Home'
@@ -11,3 +16,10 @@ i18n.map 'en_US', deps:
   name: 'Departments'
   title: 'Departments manager'
   createDep: 'Creating department'
+  mainDep: 'Main department'
+  addDep: 'Add department'
+  synonyms: 'Synonyms'
+  synonymsDesc: 'Key words, tags and other words to search department'
+  status: 'Status'
+  statusHidden: 'Hidden'
+  statusNew: 'New'

@@ -5,7 +5,7 @@ template(name='deps')
         .col-md-2
             a#add_dep_btn.btn.btn-success(href="{{ pathFor 'createDep' }}")
                 i.fa.fa-plus-square
-                | Add department
+                | {{ i18n 'deps.addDep' }}
     .row
         .col-md-12
             table.table.table-striped
@@ -14,12 +14,12 @@ template(name='deps')
                         th(width='50')
                             input(type='checkbox')
                         th ID
-                        th Title
-                        th Main department
+                        th {{ i18n 'general.title' }}
+                        th {{ i18n 'deps.mainDep' }}
                 tbody
                     if deps.length
                         each deps
                             +depRow
                     else
                         tr
-                            td.text-center(colspan='4') Not found
+                            td.text-center(colspan='4') {{ i18n 'not_found' }}
