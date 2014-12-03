@@ -5,9 +5,9 @@ Template.depForm.helpers
     rules: [
       token: ''
       collection: 'DepartmentsCollection'
-      subscription: 'adminDeps'
+      subscription: 'autocompleteDeps'
       field: "synonyms"
-      options: ''
+      options: 'i'
       matchAll: true
       template: Template.autocompleteDep
     ]

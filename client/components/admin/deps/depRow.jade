@@ -1,10 +1,7 @@
 template(name="depRow")
    tr
+      td: input.groupcheck(type='checkbox' id=_id)
+      td #{this._id}
+      td #{title.en_US}
       td
-         input.groupcheck(type='checkbox' id=_id)
-      td
-         +_id
-      td
-         +title.en_US
-      td
-         +main_dep
+         +getMainDep main_dep
