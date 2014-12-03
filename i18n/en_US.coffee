@@ -12,6 +12,11 @@ i18n.map 'en_US', homepage:
   title: 'Guidep - your guide for markets and stores.'
   subtitle: 'Save time on a trip to the store.'
 
+i18n.map 'en_US', admin:
+  name: 'Admin panel'
+  title: 'Admin panel - Guidep'
+  subtitle: 'Admin panel'
+
 i18n.map 'en_US', deps:
   name: 'Departments'
   title: 'Departments manager'
@@ -23,3 +28,4 @@ i18n.map 'en_US', deps:
   status: 'Status'
   statusHidden: 'Hidden'
   statusNew: 'New'
+  depCreatedSuccess: 'Department was created successfully'

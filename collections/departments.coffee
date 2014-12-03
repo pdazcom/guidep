@@ -38,4 +38,7 @@ Departments.allow
 
     UsersCollection.findOne({ _id: userId}, {fields: { role: 1 }}).hasAccess 'admin'
 
+_.extend Departments,
+  createDep: (data, cb)->
+    @insert data, cb
 @DepartmentsCollection = Departments

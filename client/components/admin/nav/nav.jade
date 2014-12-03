@@ -1,0 +1,6 @@
+template(name='adminNav')
+    li.divider-vertical
+    li
+        a(href="{{ pathFor 'admin' }}") {{ i18n 'admin.name' }}
+    li
+        a(href="{{ pathFor 'deps' }}") {{ i18n 'deps.name' }}

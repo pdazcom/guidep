@@ -40,3 +40,7 @@ template(name='depForm')
                     | {{i18n 'deps.statusNew'}}
             .col-md-6.pull-right.text-right
                 button#submit_btn.btn.btn-primary(type="submit" href="#") {{i18n 'general.create'}}
+
+template(name='autocompleteDep')
+    li(id=_id)
+        +title.en_US

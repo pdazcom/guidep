@@ -13,19 +13,16 @@ template(name='app')
                     span.icon-bar
                     span.icon-bar
                     span.icon-bar
-                a.navbar-brand(href='/') {{ i18n 'general.logo' }}
+                a.navbar-brand(href="{{ pathFor 'home' }}") {{ i18n 'general.logo' }}
             #navbar.collapse.navbar-collapse
                 ul.nav.navbar-nav
-                    li
-                        a(href='/') {{ i18n 'homepage.name' }}
-                    li
-                        a(href='/deps') {{ i18n 'deps.name' }}
-                    li
-                        a(href='/editor') Boards
+                    +userNav
+                    with isAdmin
+                        +adminNav
                 ul.nav.navbar-nav.navbar-right
                     +loginButtons
     .container
         +yield
     .footer
         .container
-            p.text-muted TODO List, 2014.
+            p.text-muted Guidep, 2014.

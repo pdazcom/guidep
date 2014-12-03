@@ -1,0 +1,4 @@
+template(name='_loginButtonsAdditionalLoggedInDropdownActions')
+    with isAdmin
+        button.btn.btn-default.btn-block#login-buttons-admin
+            | {{i18n 'admin.name'}}

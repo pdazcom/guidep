@@ -1,5 +1,5 @@
-Router.route '/deps', name: 'deps'
-class @DepsController extends PagableRouteController
+Router.route '/admin/deps', name: 'deps'
+class @DepsController extends AdminPagableRouteController
   template: 'deps'
   perPage: 20
 
@@ -19,3 +19,7 @@ class @DepsController extends PagableRouteController
   onRun: ->
     @resetLimit()
     @next()
+
+  load: ->
+    $('html, body').animate({ scrollTop: 0 }, 400)
+    $('.content').hide().fadeIn(1000)
