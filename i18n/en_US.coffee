@@ -1,4 +1,4 @@
-i18n.map 'en_US', general:
+i18n.map 'en', general:
   logo: 'Guidep'
   toggle_nav: 'Toggle navigation'
   title: 'Title'
@@ -7,17 +7,17 @@ i18n.map 'en_US', general:
   delete: 'Delete'
   edit: 'Edit'
 
-i18n.map 'en_US', homepage:
+i18n.map 'en', homepage:
   name: 'Home'
   title: 'Guidep - your guide for markets and stores.'
   subtitle: 'Save time on a trip to the store.'
 
-i18n.map 'en_US', admin:
+i18n.map 'en', admin:
   name: 'Admin panel'
   title: 'Admin panel - Guidep'
   subtitle: 'Admin panel'
 
-i18n.map 'en_US', deps:
+i18n.map 'en', deps:
   name: 'Departments'
   title: 'Departments manager'
   createDep: 'Creating department'
@@ -29,3 +29,4 @@ i18n.map 'en_US', deps:
   statusHidden: 'Hidden'
   statusNew: 'New'
   depCreatedSuccess: 'Department was created successfully'
+  noMainDep: '- root -'

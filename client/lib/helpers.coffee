@@ -3,3 +3,6 @@ Handlebars.registerHelper "isAdmin", ()->
     return false
   else
     return !!Meteor.user() && Meteor.user().hasAccess 'admin'
+
+Handlebars.registerHelper "getLang", ()->
+  i18n.getLanguage()

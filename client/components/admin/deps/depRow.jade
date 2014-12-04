@@ -1,7 +1,10 @@
 template(name="depRow")
    tr
       td: input.groupcheck(type='checkbox' id=_id)
-      td #{this._id}
-      td #{title.en_US}
+      td #{_id}
+      td {{ getTitle title }}
       td
-         +getMainDep main_dep
+         with main_dep
+            | {{ getMainDep this }}
+         unless main_dep
+            span.text-gray {{i18n 'deps.noMainDep'}}

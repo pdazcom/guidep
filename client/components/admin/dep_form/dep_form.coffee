@@ -30,12 +30,13 @@ Template.depForm.events
       if dep.status.new
         dep.status.new = true
 
-    DepartmentsCollection.createDep dep, (err)->
+    DepartmentsCollection.createDep dep, (err, e)->
+      console.log e
       if err
         alertify.error err.msg
-      else
+      else if !Meteor.methods.isSimulation
         form.reset()
         alertify.success i18n 'deps.depCreatedSuccess'
-        Router.go 'deps'
+        #Router.redirect 'deps'
 
     console.log form

@@ -1,14 +1,14 @@
-i18n.setDefaultLanguage 'en_US'
+i18n.setDefaultLanguage 'en'
 
 i18n.getAvailableLanguages = ->
-  return ['en_US', 'ru_RU']
+  return ['en', 'ru']
 
-i18n.getLanguage = (language) ->
+i18n.identLanguage = (language) ->
   if language.match /fr/
-    language = 'fr_FR'
+    language = 'fr'
   if language.match /ru/
-    language = 'ru_RU'
+    language = 'ru'
   else
-    language = 'en_US'
+    language = 'en'
 
   return language
