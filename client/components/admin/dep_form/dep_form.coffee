@@ -34,9 +34,8 @@ Template.depForm.events
       console.log e
       if err
         alertify.error err.msg
-      else if !Meteor.methods.isSimulation
+      else
         form.reset()
         alertify.success i18n 'deps.depCreatedSuccess'
-        #Router.redirect 'deps'
+        Router.go 'deps'
 
-    console.log form
