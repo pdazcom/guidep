@@ -3,7 +3,7 @@ template(name='depForm')
     form#dep_form(role='form')
         .row
             .col-md-6.col-xs-12
-                each langs
+                +each langs
                     .form-group
                         label(for='title') #{this} {{i18n 'general.title'}}
                         input.form-control(
@@ -20,8 +20,8 @@ template(name='depForm')
                         id="main_dep"
                         class="form-control"
                         placeholder=mainDepPlaceholder
-                        name="main_dep"
                     )
+                    input(type="hidden" id="main_dep" name="main_dep")
             .col-md-9.col-xs-12
                 .form-group
                     label(for='synonyms') {{i18n 'deps.synonyms'}}
@@ -42,5 +42,4 @@ template(name='depForm')
                 button#submit_btn.btn.btn-primary(type="submit" href="#") {{i18n 'general.create'}}
 
 template(name='autocompleteDep')
-    li(id=_id)
-        +title.en_US
+    li(id=_id) {{getTitle title}}

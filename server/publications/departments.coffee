@@ -44,10 +44,25 @@ Meteor.publish 'adminDeps', (limit = 20) ->
 
   return deps
 
-Meteor.publish 'autocompleteDeps', (options) ->
-  console.log options
-  DepartmentsCollection.find options,
-    limit: 20
+Meteor.publish 'autocompleteDeps', (selector, options, collName) ->
+  collection = global[collName]
+  unless collection
+    throw new Error(collName + ' is not defined on the global namespace of the server.')
+
+  user = null
+  if @userId
+    user = UsersCollection.findOne { _id: @userId }, { fields : { role: 1 }}
+
+  if !user or !user.hasAccess "admin"
+    # просто говорим, что все готово
+    @ready()
+    return
+
+  options.limit = Math.min(50, Math.abs(options.limit)) if options.limit
+  _.extend options,
     fields:
-      _id: 1
       title: 1
+      _id: 1
+
+  Autocomplete.publishCursor( collection.find(selector, options), this)
+  this.ready()

@@ -1,15 +1,21 @@
 Template.depForm.helpers
   settings: ->
-    position: "top"
-    limit: 5
+    position: "bottom"
+    limit: 20
     rules: [
       token: ''
       collection: 'DepartmentsCollection'
       subscription: 'autocompleteDeps'
-      field: "synonyms"
+      field: "title.#{i18n.getLanguage()}"
       options: 'i'
       matchAll: true
       template: Template.autocompleteDep
+      selector: (filter)->
+        "synonyms":
+          $regex: if @matchAll then filter else "^" + filter
+          $options: if (typeof @options is 'undefined') then 'i' else @options
+      callback: (doc, el)->
+        $("input#main_dep").val doc._id
     ]
 
   mainDepPlaceholder: ->

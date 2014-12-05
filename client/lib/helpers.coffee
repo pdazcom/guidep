@@ -6,3 +6,6 @@ Handlebars.registerHelper "isAdmin", ()->
 
 Handlebars.registerHelper "getLang", ()->
   i18n.getLanguage()
+
+Handlebars.registerHelper "getTitle", (title)->
+    return title[i18n.getLanguage()]
