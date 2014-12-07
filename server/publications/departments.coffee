@@ -1,16 +1,18 @@
-Meteor.publish 'adminDeps', (limit = 20) ->
-  # проверям авторизован ли пользователь,
-  # запрашивающий подписку
+checkAdmin = (userId) ->
   user = null
-  if @userId
-    user = UsersCollection.findOne { _id: @userId }, { fields : { role: 1 }}
+  if userId
+    user = UsersCollection.findOne { _id: userId }, { fields : { role: 1 }}
 
   if !user or !user.hasAccess "admin"
-    # просто говорим, что все готово
+    return false
+  true
+#-----------------------------------------------
+Meteor.publish 'adminDeps', (limit = 20, singleDepId = null) ->
+  if !checkAdmin(@userId)
     @ready()
     return
-
-  deps = DepartmentsCollection.find({}, limit: limit || 20)
+  query = if singleDepId? then _id: singleDepId else {}
+  deps = DepartmentsCollection.find(query, limit: limit || 20)
 
   inited = false
   mainDepsFindOptions =
@@ -21,7 +23,6 @@ Meteor.publish 'adminDeps', (limit = 20) ->
   addMainDep = (id, fields) =>
     if inited
       depId = fields.main_dep
-      console.log depId
       @added 'departments', depId, DepartmentsCollection.findOne(depId, mainDepsFindOptions)
 
   handle = deps.observeChanges
@@ -35,7 +36,6 @@ Meteor.publish 'adminDeps', (limit = 20) ->
       return false
     mainDepIds.push b.main_dep
 
-  console.log mainDepIds
   DepartmentsCollection.find({_id: { $in: mainDepIds }}, mainDepsFindOptions).forEach (doc)=>
     @added 'departments', doc._id, doc
 
@@ -43,18 +43,13 @@ Meteor.publish 'adminDeps', (limit = 20) ->
     handle.stop()
 
   return deps
-
+#-----------------------------------------------
 Meteor.publish 'autocompleteDeps', (selector, options, collName) ->
   collection = global[collName]
   unless collection
     throw new Error(collName + ' is not defined on the global namespace of the server.')
 
-  user = null
-  if @userId
-    user = UsersCollection.findOne { _id: @userId }, { fields : { role: 1 }}
-
-  if !user or !user.hasAccess "admin"
-    # просто говорим, что все готово
+  if !checkAdmin(@userId)
     @ready()
     return
 
@@ -66,3 +61,10 @@ Meteor.publish 'autocompleteDeps', (selector, options, collName) ->
 
   Autocomplete.publishCursor( collection.find(selector, options), this)
   this.ready()
+#-----------------------------------------------
+Meteor.publish 'adminDep', (depId) ->
+  if !checkAdmin(@userId)
+    @ready()
+    return
+
+  DepartmentsCollection.find _id: depId

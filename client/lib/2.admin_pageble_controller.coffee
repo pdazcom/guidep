@@ -2,7 +2,7 @@ varName = (inst, name = null) ->
   name = name && "_#{name}" || ""
   "#{inst.constructor.name}#{name}_limit"
 
-class @AdminPagableRouteController extends AdminRouteController
+class @AdminPagebleRouteController extends AdminRouteController
 
   pageable: true # будем проверять, что это за контроллер
   perPage: 20    # количество данных на одной странице

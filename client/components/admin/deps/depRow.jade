@@ -2,7 +2,7 @@ template(name="depRow")
    tr
       td: input.groupcheck(type='checkbox' id=_id)
       td #{_id}
-      td {{ getTitle title }}
+      td: a(href="{{pathFor 'editDep' id=this._id}}") {{ getTitle title }}
       td
          with main_dep
             | {{ getMainDep this }}

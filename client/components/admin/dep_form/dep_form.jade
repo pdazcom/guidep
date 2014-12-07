@@ -1,5 +1,9 @@
 template(name='depForm')
-    h1 {{ i18n 'deps.createDep' }}
+    h1
+        +if editDep
+            | {{ i18n 'deps.editDep' }}
+        +else
+            | {{ i18n 'deps.createDep' }}
     form#dep_form(role='form')
         .row
             .col-md-6.col-xs-12
@@ -11,17 +15,31 @@ template(name='depForm')
                             name="title[#{this}]"
                             placeholder="{{i18n 'general.title'}}"
                             id="title[#{this}]"
+                            value="{{ valueDep .. 'title' this }}"
                         )
             .col-md-6.col-xs-12
                 .form-group
                     label(for='main_dep') {{i18n 'deps.mainDep'}}
-                    +inputAutocomplete(
-                        settings=settings
-                        id="main_dep"
-                        class="form-control"
-                        placeholder=mainDepPlaceholder
-                    )
-                    input(type="hidden" id="main_dep" name="main_dep")
+                    div
+                        a.editable#main_dep_edit {{valueMainDep this 'title'}}
+                        span.hidden#maindep_title
+                            form.form-inline.editableform
+                                .control-group.form-group
+                                    div
+                                        .editable-input
+                                            +inputAutocomplete(
+                                                settings=settings
+                                                id="main_dep_input"
+                                                class="form-control"
+                                                placeholder=mainDepPlaceholder
+                                                autocomplete="off"
+                                                value="{{valueMainDep this 'title'}}"
+                                            )
+                                            span.editable-clear-x
+                                        .editable-buttons
+                                            button.btn.btn-warning.btn-sm.editable-cancel: i.fa.fa-remove
+
+                    input(type="hidden" id="main_dep" name="main_dep" value="{{valueMainDep this '_id'}}")
             .col-md-9.col-xs-12
                 .form-group
                     label(for='synonyms') {{i18n 'deps.synonyms'}}
@@ -29,14 +47,15 @@ template(name='depForm')
                         id="synonyms"
                         name="synonyms"
                     )
+                        | {{valueDep this 'synonyms'}}
                     p.help-block {{i18n 'deps.synonymsDesc'}}
             .col-md-3.col-xs-12
                 label {{i18n 'deps.status'}}
                 .checkbox
-                    label: input(type='checkbox' name='status[hidden]' id='status[hidden]')
+                    label: input(type='checkbox' name='status[hidden]' id='status[hidden]' checked="{{valueDep this 'status.hidden'}}" )
                     | {{i18n 'deps.statusHidden'}}
                 .checkbox
-                    label: input(type='checkbox' name='status[new]' id='status[new]')
+                    label: input(type='checkbox' name='status[new]' id='status[new]' checked="{{valueDep this 'status.new'}}")
                     | {{i18n 'deps.statusNew'}}
             .col-md-6.pull-right.text-right
                 button#submit_btn.btn.btn-primary(type="submit" href="#") {{i18n 'general.create'}}

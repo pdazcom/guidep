@@ -1,9 +1,9 @@
 Router.route '/admin/deps', name: 'deps'
-class @DepsController extends AdminPagableRouteController
+class @DepsController extends AdminPagebleRouteController
   template: 'deps'
   perPage: 20
 
-  subscriptions: ->
+  waitOn: ->
     @subscribe 'adminDeps', @limit()
 
   data: ->

@@ -6,6 +6,7 @@ i18n.map 'en', general:
   create: 'Create'
   delete: 'Delete'
   edit: 'Edit'
+  empty: 'Empty'
 
 i18n.map 'en', homepage:
   name: 'Home'
@@ -21,6 +22,7 @@ i18n.map 'en', deps:
   name: 'Departments'
   title: 'Departments manager'
   createDep: 'Creating department'
+  editDep: 'Editing department'
   mainDep: 'Main department'
   addDep: 'Add department'
   synonyms: 'Synonyms'
