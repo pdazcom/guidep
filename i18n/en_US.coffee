@@ -5,6 +5,7 @@ i18n.map 'en', general:
   not_found: 'Not found'
   create: 'Create'
   delete: 'Delete'
+  save: 'Save'
   edit: 'Edit'
   empty: 'Empty'
 
@@ -30,5 +31,7 @@ i18n.map 'en', deps:
   status: 'Status'
   statusHidden: 'Hidden'
   statusNew: 'New'
-  depCreatedSuccess: 'Department was created successfully'
+  depCreateSuccess: 'Department was created successfully'
+  depUpdateSuccess: 'Department was updated successfully'
   noMainDep: '- root -'
+  errorUpdateNoDepID: 'No department ID in query'

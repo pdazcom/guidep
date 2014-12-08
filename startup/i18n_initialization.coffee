@@ -7,7 +7,10 @@ Meteor.startup ->
       #detect the language used by the browser
       language = window.navigator.userLanguage || window.navigator.language
       language = i18n.identLanguage language
+
     console.log "Useragent language: #{language}"
+    if !language
+      language = 'en'
     i18n.setLanguage language
 
     console.log "Current language: #{i18n.getLanguage()}"

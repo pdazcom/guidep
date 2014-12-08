@@ -5,6 +5,8 @@ template(name='depForm')
         +else
             | {{ i18n 'deps.createDep' }}
     form#dep_form(role='form')
+        +if editDep
+            input(type="hidden" name="_id" value="{{ valueDep this '_id' }}")
         .row
             .col-md-6.col-xs-12
                 +each langs
@@ -33,7 +35,7 @@ template(name='depForm')
                                                 class="form-control"
                                                 placeholder=mainDepPlaceholder
                                                 autocomplete="off"
-                                                value="{{valueMainDep this 'title'}}"
+                                                value=valueMainDepTitle
                                             )
                                             span.editable-clear-x
                                         .editable-buttons
@@ -58,7 +60,7 @@ template(name='depForm')
                     label: input(type='checkbox' name='status[new]' id='status[new]' checked="{{valueDep this 'status.new'}}")
                     | {{i18n 'deps.statusNew'}}
             .col-md-6.pull-right.text-right
-                button#submit_btn.btn.btn-primary(type="submit" href="#") {{i18n 'general.create'}}
+                button#submit_btn.btn.btn-primary(type="submit" href="#") {{submitButton editDep}}
 
 template(name='autocompleteDep')
     li(id=_id) {{getTitle title}}

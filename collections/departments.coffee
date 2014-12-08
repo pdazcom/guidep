@@ -31,14 +31,27 @@ depSchema = SimpleSchema.build SimpleSchema.timestamp,
 Departments = new Mongo.Collection 'departments'
 Departments.attachSchema depSchema
 
+allow = (userId)->
+  if !userId
+    return false
+  UsersCollection.findOne({ _id: userId}, {fields: { role: 1 }}).hasAccess 'admin'
+
 Departments.allow
   insert: (userId, doc)->
-    if !userId
-      false
+    allow userId
 
-    UsersCollection.findOne({ _id: userId}, {fields: { role: 1 }}).hasAccess 'admin'
+  update: (userId, doc)->
+    allow userId
 
 _.extend Departments,
   createDep: (data, cb)->
     @insert data, cb
+
+  updateDep: (data, cb)->
+    if !data._id
+      throw new Meteor.error i18n "deps.errorUpdateNoDepID"
+    depId = data._id
+    delete data._id
+    @update _id: depId, { $set: data }, cb
+
 @DepartmentsCollection = Departments
