@@ -17,6 +17,7 @@ class @DepsController extends AdminPagebleRouteController
     super()
 
   onRun: ->
+    console.log "onRun: #{this.url}"
     @resetLimit()
     @next()
 
