@@ -1,0 +1,1 @@
+class @AdminPagebleRouteController extends _.mixings PagebleRouteController, AdminRouteController

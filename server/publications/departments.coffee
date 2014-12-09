@@ -60,11 +60,4 @@ Meteor.publish 'autocompleteDeps', (selector, options, collName) ->
       _id: 1
 
   Autocomplete.publishCursor( collection.find(selector, options), this)
-  this.ready()
-#-----------------------------------------------
-Meteor.publish 'adminDep', (depId) ->
-  if !checkAdmin(@userId)
-    @ready()
-    return
-
-  DepartmentsCollection.find _id: depId
+  @ready()

@@ -4,7 +4,12 @@ class @DepsController extends AdminPagebleRouteController
   perPage: 20
 
   waitOn: ->
-    @subscribe 'adminDeps', @limit()
+    console.info "waitOn: #{@url}"
+    @subscribe 'adminDeps', @limit(), ()->
+      console.warn "data loaded!"
+#  subscriptions: ->
+#    @subscribe 'adminDeps', @limit(), ()->
+#      console.warn "data loaded!"
 
   data: ->
     deps: DepartmentsCollection.find()
@@ -17,9 +22,10 @@ class @DepsController extends AdminPagebleRouteController
     super()
 
   onRun: ->
-    console.log "onRun: #{this.url}"
     @resetLimit()
+    console.info "onRun(route): #{@.url}"
     @next()
+
 
   load: ->
     $('html, body').animate({ scrollTop: 0 }, 400)
